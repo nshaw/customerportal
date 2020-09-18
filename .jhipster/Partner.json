@@ -1,0 +1,38 @@
+{
+  "name": "Partner",
+  "fields": [
+    {
+      "fieldName": "partnerName",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required",
+        "unique"
+      ]
+    },
+    {
+      "fieldName": "notes",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "project",
+      "otherEntityRelationshipName": "partner",
+      "relationshipName": "project",
+      "ownerSide": false
+    }
+  ],
+  "changelogDate": "20200918204419",
+  "entityTableName": "partner",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "customerportal",
+  "applications": "*",
+  "microserviceName": "customerportal"
+}

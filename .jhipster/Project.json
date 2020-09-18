@@ -1,0 +1,58 @@
+{
+  "name": "Project",
+  "fields": [
+    {
+      "fieldName": "projectName",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required",
+        "unique"
+      ]
+    },
+    {
+      "fieldName": "subscriptionVersion",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "subscriptionStartDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "subscriptionEndDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "notes",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "partner",
+      "otherEntityRelationshipName": "project",
+      "relationshipName": "partner",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "customer",
+      "otherEntityRelationshipName": "project",
+      "relationshipName": "customer",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20200918204619",
+  "entityTableName": "project",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "customerportal",
+  "applications": "*",
+  "microserviceName": "customerportal"
+}
