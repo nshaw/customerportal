@@ -1,0 +1,22 @@
+apiVersion: entando.org/v1
+kind: EntandoDeBundle
+metadata:
+  name: customerportal-bundle
+  namespace: entando
+  labels:
+    plugin: 'true'
+    widget: 'true'
+spec:
+  details:
+    name: customerportal-bundle
+    description: This is the customerportal bundle
+    dist-tags:
+      latest: v0.0.1
+    versions:
+      - v0.0.1
+  tags:
+    - version: v0.0.1
+      shasum: 78f889b5b228a2d1f54b433ced5dc773b51f49e4
+      integrity: 78f889b5b228a2d1f54b433ced5dc773b51f49e4
+      tarball: 'https://github.com/nshaw/customerportal-bundle.git'
+
