@@ -1,0 +1,27 @@
+entity Partner {
+	partnerName String required unique
+    notes String
+}
+
+entity Customer {
+	customerName String required unique
+    notes String
+}
+
+entity Project {
+	projectName String required unique
+    subscriptionVersion String
+    subscriptionStartDate LocalDate
+    subscriptionEndDate LocalDate
+    notes String
+}
+
+relationship OneToOne {
+    Project to Partner
+}
+
+relationship OneToMany {
+    Customer to Project
+}
+
+paginate Project with pagination
