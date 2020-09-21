@@ -150,4 +150,5 @@ Desktop.ini
 # Entando bundles
 ######################
 bundle/
+build/
 # !/bundle/descriptor.yaml

@@ -53,9 +53,12 @@ function injectResource() {
 
     local _NL=$'\\\n'
     SEDCMD="sed -i''"
-    echo $OSTYPE
     if [[ "$OSTYPE" == "darwin"* ]]; then
       SEDCMD='sed -i '''
+#CUSTOM START
+    elif [[ "$OSTYPE" == "msys"* ]]; then
+      SEDCMD='sed -i '
+#CUSTOM END
     fi
     echo "- Injecting resource $resource in $destFile"
     $SEDCMD 's|'"$INJECTION_POINT"'|'"$resource$_NL$INJECTION_POINT"'|g' "$destFile"
