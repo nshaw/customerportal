@@ -11,6 +11,8 @@ import AddIcon from '@material-ui/icons/Add';
 import keycloakType from 'components/__types__/keycloak';
 import withKeycloak from 'auth/withKeycloak';
 import { AuthenticatedView, UnauthenticatedView } from 'auth/KeycloakViews';
+import { hasKeycloakClientRole } from 'api/helpers';
+
 import ConfirmationDialogTrigger from 'components/common/ConfirmationDialogTrigger';
 import PaginationWrapper from 'components/pagination/PaginationWrapper';
 import withPagination from 'components/pagination/withPagination';
@@ -75,7 +77,7 @@ class ProjectTableContainer extends Component {
   }
 
   dispatch(action, afterSetState = () => {}) {
-    this.setState((prevState) => reducer(prevState, action), afterSetState);
+    this.setState(prevState => reducer(prevState, action), afterSetState);
   }
 
   async fetchData() {
@@ -184,10 +186,13 @@ class ProjectTableContainer extends Component {
     const { classes, onSelect, onAdd, onDelete, t, keycloak, paginationMode = '' } = this.props;
     const deleteLabel = t('common.delete');
 
+    const adminAccess = hasKeycloakClientRole('ROLE_ADMIN');
+    const showDelete = onDelete && adminAccess;
+
     const Actions = ({ item }) =>
-      onDelete ? (
+      showDelete ? (
         <ConfirmationDialogTrigger
-          onCloseDialog={(action) => this.handleConfirmationDialogAction(action, item)}
+          onCloseDialog={action => this.handleConfirmationDialogAction(action, item)}
           dialog={{
             title: t('entities.project.deleteDialog.title'),
             description: t('entities.project.deleteDialog.description'),

@@ -2,6 +2,7 @@ package com.entando.customerportal.web.rest;
 
 import com.entando.customerportal.domain.Project;
 import com.entando.customerportal.repository.ProjectRepository;
+import com.entando.customerportal.security.AuthoritiesConstants;
 import com.entando.customerportal.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -13,7 +14,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -94,7 +97,8 @@ public class ProjectResource {
      */
     @GetMapping("/projects")
     public ResponseEntity<List<Project>> getAllProjects(Pageable pageable) {
-        log.debug("REST request to get a page of Projects");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        log.debug("REST request to get a page of Projects for {}",authentication);
         Page<Project> page = projectRepository.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
@@ -120,6 +124,7 @@ public class ProjectResource {
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
     @DeleteMapping("/projects/{id}")
+    @Secured(AuthoritiesConstants.ADMIN)
     public ResponseEntity<Void> deleteProject(@PathVariable Long id) {
         log.debug("REST request to delete Project : {}", id);
 
