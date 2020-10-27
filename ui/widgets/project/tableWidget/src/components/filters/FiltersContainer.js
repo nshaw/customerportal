@@ -31,7 +31,7 @@ const styles = {
   },
 };
 
-const FiltersContainer = (props) => {
+const FiltersContainer = props => {
   const { classes, filters, applyFilter, update, remove, clear, add, t, error } = props;
 
   const hasFilters = filters.length > 0;
@@ -40,13 +40,13 @@ const FiltersContainer = (props) => {
     const errors =
       hasFilters &&
       filters
-        .map((filt) => {
+        .map(filt => {
           if (filt.field && filt.operator && !FILTER_TYPE_NO_VALUE_SPEC.includes(filt.operator)) {
             return filt.value ? '' : 'missing filter parameters';
           }
           return '';
         })
-        .filter((f) => !!f);
+        .filter(f => !!f);
     if (errors && errors.length > 0) {
       error(errors[0]);
     } else {

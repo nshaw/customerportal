@@ -13,7 +13,7 @@ const STRING_FIELDS = ['projectName', 'subscriptionVersion', 'notes'];
 const DATE_FIELDS = ['subscriptionStartDate', 'subscriptionEndDate'];
 const NUMBER_FIELDS = [];
 
-export const getFieldFilterTypes = (field) => {
+export const getFieldFilterTypes = field => {
   return [
     ...DEFAULT_FILTER_TYPES,
     ...(STRING_FIELDS.includes(field) ? STRING_FILTER_TYPES : []),
@@ -25,7 +25,7 @@ export const getFieldFilterTypes = (field) => {
 export const getFilterQuery = (filters = []) => {
   if (filters.length) {
     return filters
-      .filter((f) => f.field && f.operator)
+      .filter(f => f.field && f.operator)
       .reduce((acc, f) => {
         switch (f.operator) {
           case 'specified':

@@ -26,7 +26,7 @@ const styles = {
 };
 
 const ProjectTable = ({ items, onSelect, classes, t, i18n, Actions }) => {
-  const tableRows = items.map((item) => (
+  const tableRows = items.map(item => (
     <TableRow hover className={classes.rowRoot} key={item.id} onClick={() => onSelect(item)}>
       <TableCell>
         <span>{item.projectName}</span>

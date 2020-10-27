@@ -14,6 +14,7 @@ export const hasKeycloakClientRole = clientRole => {
   if (getKeycloakToken()) {
     const { resourceAccess } = window.entando.keycloak;
     if (resourceAccess) {
+      // eslint-disable-next-line
       for (let client in resourceAccess) {
         if (resourceAccess.hasOwnProperty(client)) {
           const item = resourceAccess[client];
